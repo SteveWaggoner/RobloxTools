@@ -53,11 +53,8 @@ def save_height_image(filename):
         rgb_row=[]
         for mx in range(0, size_x()):
             val = get_height(mx,my)
-            norm_val = int((val - min_height) / (max_height-min_height) *  255.0)
-            if norm_val > 255:
-                rgb_row.append([norm_val,150,150])
-            else:
-                rgb_row.append([norm_val,norm_val,norm_val])
+            norm_val = int(240.0 * (val - min_height) / (max_height-min_height))+10
+            rgb_row.append([norm_val,norm_val,norm_val])
         rgbArray.append(rgb_row)
 
     newimage = Image.new('RGB', (len(rgbArray[0]), len(rgbArray)))  # type, size
